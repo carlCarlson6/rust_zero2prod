@@ -13,7 +13,7 @@ jobs:
     steps:
 
       - name: check out repo code
-        uses: actions/chechkout@v3
+        uses: actions/checkout@v3
     
       - name: install rust toolchain
         uses: dtolnay/rust-toolchain@stable
