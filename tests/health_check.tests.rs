@@ -1,7 +1,7 @@
 #[tokio::test]
 async fn health_check_works() {
     spawn_app();
-    
+
     let response = reqwest::Client::new()
         .get("http://127.0.0.1:8000/health_check")
         .send()
