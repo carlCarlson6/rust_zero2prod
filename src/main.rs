@@ -1,5 +1,5 @@
 use actix_web::{
-    web::{self}, 
+    web::{self},
     App, HttpRequest, HttpServer, Responder
 };
 use std::io::Error;
