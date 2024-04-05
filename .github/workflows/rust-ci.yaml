@@ -8,11 +8,15 @@ jobs:
     name: build
     runs-on: ubuntu-latest
     steps:
+
       - name: check out repo code
         uses: actions/chechkout@v3
+    
       - name: install rust toolchain
         uses: dtolnay/rust-toolchain@stable
+    
       - name: rust cache action
         uses: Swatinem/rust-cache@v2
+    
       - name: execute build
         uses: cargo build
