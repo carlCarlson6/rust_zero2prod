@@ -2,6 +2,9 @@ name: rust continuous integration pipeline
 
 on: [push]
 
+env:
+  CARGO_TERM_COLOR: always
+
 jobs:
 
   build:
