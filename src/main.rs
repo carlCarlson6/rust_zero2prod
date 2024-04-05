@@ -1,8 +1,8 @@
-use std::io::Error;
 use actix_web::{
     web::{self}, 
     App, HttpRequest, HttpServer, Responder
 };
+use std::io::Error;
 
 async fn greet(request: HttpRequest) -> impl Responder {
     let name = request.match_info().get("name").unwrap_or("Word");
