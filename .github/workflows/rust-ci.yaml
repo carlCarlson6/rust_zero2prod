@@ -9,24 +9,44 @@ jobs:
     name: BUILD
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
+      - name: checkout repo code
         uses: actions/checkout@v3
-      - name: Install the Rust toolchain
+      - name: install rust toolchain
         uses: dtolnay/rust-toolchain@stable
-      - name: Rust Cache Action
+      - name: rust cache
         uses: Swatinem/rust-cache@v2
-      - name: Run tests
+      - name: execute BUID
         run: cargo build
   test:
     name: TEST
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
+      - name: checkout repo code
         uses: actions/checkout@v3
-      - name: Install the Rust toolchain
+      - name: install rust toolchain
         uses: dtolnay/rust-toolchain@stable
-      - name: Rust Cache Action
+      - name: rust cache
         uses: Swatinem/rust-cache@v2
-      - name: Run tests
+      - name: execute TEST
         run: cargo test
-
+  fmt:
+    name: FORMATING
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - name: Enforce formatting
+        run: cargo fmt --check
+  clippy:
+    name: LINT
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Linting
+        run: cargo clippy -- -D warnings
