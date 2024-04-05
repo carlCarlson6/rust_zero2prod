@@ -6,20 +6,28 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-
-  build:
-    name: build
+# Unique identifier of our job (`job_id`)
+  test:
+    # Sets the name `Test` for the job, which is displayed in the GitHub UI
+    name: Test
+    # Containers must run in Linux based operating systems
     runs-on: ubuntu-latest
     steps:
-
-      - name: check out repo code
+        # Downloads a copy of the code in your repository before running CI tests
+      - name: Check out repository code
+        # The uses keyword specifies that this step will run v3 of the actions/checkout action. 
+        # This is an action that checks out your repository onto the runner, allowing you to run scripts or other actions against your code (such as build and test tools). 
+        # You should use the checkout action any time your workflow will run against the repository's code.
         uses: actions/checkout@v3
-    
-      - name: install rust toolchain
+
+      # This GitHub Action installs a Rust toolchain using rustup. It is designed for one-line concise usage and good defaults.
+      - name: Install the Rust toolchain
         uses: dtolnay/rust-toolchain@stable
-    
-      - name: rust cache action
+
+      # A GitHub Action that implements smart caching for rust/cargo projects with sensible defaults.
+      - name: Rust Cache Action
         uses: Swatinem/rust-cache@v2
-    
-      - name: execute build
-        uses: cargo build
+
+      - name: Run tests
+        run: cargo test
+
