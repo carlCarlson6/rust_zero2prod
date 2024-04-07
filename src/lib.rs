@@ -12,7 +12,10 @@ struct SubscribeFormData {
 }
 
 async fn subscribe(form: web::Form<SubscribeFormData>) -> HttpResponse {
-    println!("request recieved on subscriptions for {} - {}", form.email, form.name);
+    println!(
+        "request recieved on subscriptions for {} - {}",
+        form.email, form.name
+    );
     HttpResponse::Ok().finish()
 }
 
